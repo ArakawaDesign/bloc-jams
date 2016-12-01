@@ -15,7 +15,6 @@ body{
     color: white;
     min-height: 100%;
 }
-
 .navbar{
     position: relative;
     padding: 0.5rem;
@@ -54,10 +53,10 @@ body{
     text-decoration: none;
     cursor: pointer;
 }
-
-.links-container .navbar-link:hover{
-    color: rgb(233,50,117);
-}
+ 
+ .links-container .navbar-link:hover {
+     color: rgb(233,50,117);
+ }
 
 .container{
     margin: 0 auto;
