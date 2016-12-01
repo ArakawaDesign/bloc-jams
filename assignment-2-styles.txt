@@ -1,0 +1,7 @@
+1. Explain the difference between absolute and relative positioning.
+When using relative positioning, offsetting an element will offset it relative to the HTML document.However, if it is placed inside another element, it will be offset relative to that element, not to the HTML document.
+In contrast, absolute positioning places an element in X position and it will not affect or be affected by any other element.
+
+
+2. Explain how box-sizing: border-box treats contained content differently than the default browser box-sizing.
+The default box-sizing value is content-box, and will change width and height of the box when padding is changed. With border-box, the original height and width of the box will remain the same, and we will still be able to see the padding changes take effect.
