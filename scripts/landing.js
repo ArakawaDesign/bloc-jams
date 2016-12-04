@@ -3,9 +3,7 @@ var pointsArray = document.getElementsByClassName('point');
 var animatePoints = function (points) {
     
     var revealPoint = function (array) {
-        
-    forEach(array, myCallback);
-    
+        forEach(array, myCallback);
     }
     revealPoint(pointsArray);
 };
@@ -23,4 +21,3 @@ window.onload = function () {
         }
     });
 }
-
