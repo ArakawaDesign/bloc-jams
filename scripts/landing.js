@@ -9,5 +9,10 @@ var animatePoints = function() {
             points[i].style.WebkitTransform = "scaleX(1) translateY(0)";
         }
     };
+
     revealPoint();
+
 };
+
+animatePoints();
+
