@@ -28,6 +28,21 @@ var albumMarconi = {
     ]
  };
 
+var albumMachiavelli = {
+    title: 'The Prince',
+    artist: 'Niccolo Machiavelli',
+    label: 'Politics and Philosophy',
+    year: '1532',
+    albumArtUrl: 'assets/images/album_covers/17.png',
+    songs: [
+        { title: 'New Princedoms', duration: '1:02' },
+        { title: 'Totally New States', duration: '6:09' },
+        { title: 'Ecclesiastical Principates', duration: '1:10'},
+        { title: 'Defense and Military', duration: '12:14' },
+        { title: 'Prudence and Chance', duration: '2:40'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -63,3 +78,16 @@ var setCurrentAlbum = function(album) {
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 };
+
+var albumSelector = document.getElementsByTagName('h3')[0];
+var albumToggler = document.getElementsByClassName('album-cover-art')[0];
+
+albumToggler.addEventListener('click', function() {
+    if (albumSelector.textContent === "Pablo Picasso"){
+        setCurrentAlbum(albumMarconi);
+    } else if(albumSelector.textContent === "Guglielmo Marconi"){
+        setCurrentAlbum(albumMachiavelli);
+    } else {
+        setCurrentAlbum(albumPicasso);
+    }
+})
