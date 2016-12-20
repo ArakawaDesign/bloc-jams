@@ -63,10 +63,6 @@ var nextSong = function() {
 };
 
 var previousSong = function() {
-<<<<<<< HEAD
-    
-=======
->>>>>>> checkpoint-19-assignment
     var getLastSongNumber = function(index) {
         return index == (currentAlbum.songs.length - 1) ? 1 : index + 2;
     };
@@ -77,10 +73,6 @@ var previousSong = function() {
     if (currentSongIndex < 0) {
         currentSongIndex = currentAlbum.songs.length - 1;
     }
-<<<<<<< HEAD
-=======
-    
->>>>>>> checkpoint-19-assignment
     currentlyPlayingSongNumber = currentSongIndex + 1;
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
 
@@ -147,6 +139,10 @@ var offHover = function(event) {
 var setSong = function(songNumber) {
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+    currentSoundFile = new buzz.sound(currentSongFromAlbum, {
+        formats: ['mp3'],
+        preload: true
+    });
 };
 
 var getSongNumberCell = function(number) {
@@ -160,6 +156,7 @@ var playerBarPauseButton = '<span class="ion-pause"></span>';
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null; 
+var currentSoundFile = null;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
