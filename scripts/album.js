@@ -63,10 +63,6 @@ var nextSong = function() {
 };
 
 var previousSong = function() {
-<<<<<<< HEAD
-    
-=======
->>>>>>> checkpoint-19-assignment
     var getLastSongNumber = function(index) {
         return index == (currentAlbum.songs.length - 1) ? 1 : index + 2;
     };
@@ -77,10 +73,6 @@ var previousSong = function() {
     if (currentSongIndex < 0) {
         currentSongIndex = currentAlbum.songs.length - 1;
     }
-<<<<<<< HEAD
-=======
-    
->>>>>>> checkpoint-19-assignment
     currentlyPlayingSongNumber = currentSongIndex + 1;
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
 
@@ -108,19 +100,24 @@ var updatePlayerBarSong = function() {
 
 };
 
+var parseCurrentlyPlayingSongNumber = parseInt(currentlyPlayingSongNumber);
+var parseSongNumberCell = parseInt(songNumberCell.attr('data-song-number'));
+var parseSongNumber = parseInt(songNumber);
+
 var clickHandler = function(targetElement) {
 	var songNumber = $(this).attr('data-song-number');
-	if (parseInt(currentlyPlayingSongNumber) !== null) {
+	if (parseCurrentlyPlayingSongNumber !== null) {
 		var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
-		currentlyPlayingCell.html(parseInt(currentlyPlayingSongNumber));
+		currentlyPlayingCell.html(parseCurrentlyPlayingSongNumber);
+
 	}
     
-	if (parseInt(currentlyPlayingSongNumber) !== parseInt(songNumber)) {
+	if (parseCurrentlyPlayingSongNumber !== parseSongNumber) {
 		$(this).html(pauseButtonTemplate);
 		setSong(songNumber);
         updatePlayerBarSong();
 	
-    } else if (parseInt(currentlyPlayingSongNumber) === parseInt(songNumber)) {
+    } else if (parseCurrentlyPlayingSongNumber === parseSongNumber) {
 		$(this).html(playButtonTemplate);
         $('.main-controls .play-pause').html(playerBarPlayButton);
 		currentlyPlayingSongNumber = null;
@@ -128,18 +125,19 @@ var clickHandler = function(targetElement) {
 	}
 };
 
+
 var onHover = function(event) {
 		var songNumberCell = $(this).find('.song-item-number');
-		var songNumber = parseInt(songNumberCell.attr('data-song-number'));
-		if (songNumber !== parseInt(currentlyPlayingSongNumber)) {
+		var songNumber = parseSongNumberCell;
+		if (songNumber !== parseCurrentlyPlayingSongNumber) {
 			songNumberCell.html(playButtonTemplate);
 		}
 };
 var offHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
-        var songNumber = parseInt(songNumberCell.attr('data-song-number'));
+        var songNumber = parseSongNumberCell;
     
-        if (songNumber !== parseInt(currentlyPlayingSongNumber)) {
+        if (songNumber !== parseCurrentlyPlayingSongNumber) {
         songNumberCell.html(songNumber);
         }
 };
