@@ -1,15 +1,15 @@
-var albumPicasso = {
-	title: 'The Colors',
-	artist: 'Pablo Picasso',
-	label: 'Cubism',
-	year: '1881',
-	albumArtUrl: 'assets/images/album_covers/01.png',
+var albumExplosions = {
+	title: 'The Earth Is Not A Cold Dead Place',
+	artist: 'Explosions in the Sky',
+	label: 'Temporary Residence Limited',
+	year: '2003',
+	albumArtUrl: 'assets/images/album_covers/explosions-earth.jpg',
 	songs: [
-        { title: 'Blue', duration: '4:26', audioUrl: 'assets/music/blue' }, 
-        { title: 'Green', duration: '3:14', audioUrl: 'assets/music/green' }, 
-        { title: 'Red', duration: '5:01', audioUrl: 'assets/music/red' }, 
-        { title: 'Pink', duration: '3:21', audioUrl: 'assets/music/pink' }, 
-        { title: 'Magenta', duration: '2:15', audioUrl: 'assets/music/magenta'}
+        { title: 'Catastrophe and the Cure', duration: 476, audioUrl: 'assets/music/Catastrophe And The Cure' }, 
+        { title: 'Memorial', duration: 530, audioUrl: 'assets/music/Memorial' }, 
+        { title: 'Postcard from 1952', duration: 429, audioUrl: 'assets/music/Postcard from 1952' }, 
+        { title: 'The Birth And Death Of The Day', duration: 469, audioUrl: 'assets/music/The Birth And The Death Of Day' }, 
+        { title: 'Your Hand In Mine', duration: 497, audioUrl: 'assets/music/Your Hand In Mine'}
     ]
 };
 
