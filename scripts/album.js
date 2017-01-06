@@ -36,13 +36,39 @@ var setCurrentAlbum = function(album) {
 var updateSeekBarWhileSongPlays = function() {
     if(currentSoundFile) {
         currentSoundFile.bind('timeupdate', function(event) {
+            var currentTime = this.getTime();
+            var duration = this.getDuration();
             var seekBarFillRatio = this.getTime() / this.getDuration();
             var $seekBar = $('.seek-control .seek-bar');
             
             updateSeekPercentage($seekBar, seekBarFillRatio);
+            setCurrentTimeInPlayerBar(currentTime.toString());
         });
     }
+    
+    
 };
+
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+    $displayCurrentTime.text(filterTimeCode(currentTime));
+    
+    
+};
+
+var setTotalTimeInPlayerBar = function setTotalTimeInPlayerBar(totalTime) {
+    $displayTotalTime.text(filterTimeCode(totalTime));
+}
+
+var filterTimeCode = function filterTimeCode(timeInSeconds) {
+    timeInSeconds = parseFloat(timeInSeconds);
+    var minutes = Math.floor(timeInSeconds / 60);
+    var seconds = Math.floor(timeInSeconds % 60);
+    if (seconds < 10) {
+        seconds = '0' + seconds;
+    }
+    return minutes + ':' + seconds;
+}
 
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
     var offsetXPercent = seekBarFillRatio * 100;
@@ -173,8 +199,8 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-    
     $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 
 };
 
@@ -265,11 +291,15 @@ var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 var playerBarPlayButton = '<span class="ion-play"></span>';
 var playerBarPauseButton = '<span class="ion-pause"></span>';
+
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null; 
 var currentSoundFile = null;
 var currentVolume = 80;
+
+var $displayCurrentTime = $('.current-time');
+var $displayTotalTime = $('.total-time');
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
