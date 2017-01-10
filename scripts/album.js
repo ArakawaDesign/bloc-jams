@@ -3,7 +3,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         '<tr class="album-view-song-item">' + 
         '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' + 
         '  <td class="song-item-title">' + songName + '</td>' + 
-        '  <td class="song-item-duration">' + songLength + '</td>' + 
+        '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>' + 
         '</tr>'
         ;
 	var $row = $(template);    
@@ -216,7 +216,7 @@ var clickHandler = function(targetElement) {
         setSong(songNumber);
         currentSoundFile.play();
         updateSeekBarWhileSongPlays();
-        
+        currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
         var $volumeFill = $('.volume .fill');
         var $volumeThumb = $('volume .thumb');
         $volumeFill.width(currentVolume + '%');
@@ -287,6 +287,20 @@ var offHover = function(event) {
     }
 };
 
+var togglePlayFromPlayerBar = function() {
+    var $currentCell = getSongNumberCell(currentlyPlayingSongNumber);
+    if (currentSoundFile.isPaused()) {
+        $currentCell.html(pauseButtonTemplate);
+        $(this).html(playerBarPauseButton);
+        currentSoundFile.play();
+    }
+    else if (currentSoundFile) {
+        $currentCell.html(playButtonTemplate);
+        $(this).html(playerBarPlayButton);
+        currentSoundFile.pause();
+    }
+}
+
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 var playerBarPlayButton = '<span class="ion-play"></span>';
@@ -303,10 +317,12 @@ var $displayTotalTime = $('.total-time');
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+var $mainBarPlayPause = $('.main-controls .play-pause');
 
 $(document).ready(function() {
 	setCurrentAlbum(albumExplosions);
     setupSeekBars();
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+    $mainBarPlayPause.click(togglePlayFromPlayerBar);
 });
