@@ -3,7 +3,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         '<tr class="album-view-song-item">' + 
         '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' + 
         '  <td class="song-item-title">' + songName + '</td>' + 
-        '  <td class="song-item-duration">' + songLength + '</td>' + 
+        '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>' + 
         '</tr>'
         ;
 	var $row = $(template);    
@@ -215,7 +215,7 @@ var clickHandler = function(targetElement) {
         setSong(songNumber);
         currentSoundFile.play();
         updateSeekBarWhileSongPlays();
-        
+        currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
         var $volumeFill = $('.volume .fill');
         var $volumeThumb = $('volume .thumb');
         $volumeFill.width(currentVolume + '%');
